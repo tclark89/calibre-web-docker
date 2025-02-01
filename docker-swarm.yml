@@ -12,9 +12,3 @@ services:
       - /mnt/public/eBooks:/books:rw
     ports:
       - 8083:8083
-
-networks:
-  default:
-    driver: overlay
-    external: true
-    name: calibre

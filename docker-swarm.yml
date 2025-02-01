@@ -10,7 +10,8 @@ services:
     volumes:
       - ./config:/config
       - /mnt/public/eBooks:/books:rw
-
+    ports:
+      8083:8083
 
 networks:
   default:

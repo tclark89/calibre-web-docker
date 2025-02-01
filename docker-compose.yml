@@ -1,34 +1,19 @@
 ---
 services:
-  calibre-web:
+  app:
     image: lscr.io/linuxserver/calibre-web:latest
-    container_name: calibre-web
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/Chicago
       - OATHLIB_RELAX_TOKEN_SCOPE=1
     volumes:
-      - calibre-web-config:/config
-      - type: volume
-        source: mnt-public
-        target: /books
-        volume:
-          subpath: eBooks
-    restart: unless-stopped
-
-volumes:
-  calibre-web-config:
-    driver: local
-    driver_opts:
-      type: nfs
-      o: addr=fileserver.tyler-clark.com,rw,vers=4.1
-      device: ":/srv/docker/calibre/calibre-web-config"    
-  mnt-public:
-    external: true
+      - ./config:/config
+      - /mnt/public/eBooks:/books:rw
 
 
 networks:
   default:
+    driver: overlay
     external: true
     name: calibre

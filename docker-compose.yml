@@ -1,0 +1,21 @@
+services:
+  calibre-web:
+    container_name: calibre-web
+    image: lscr.io/linuxserver/calibre-web:latest
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+      - OATHLIB_RELAX_TOKEN_SCOPE=1
+    volumes:
+      - ./config:/config
+      - /mnt/public/eBooks:/books:rw
+        #ports:
+        #- 8083:8083
+        #
+
+networks:
+  default:
+    attachable: true
+    name: calibre-web

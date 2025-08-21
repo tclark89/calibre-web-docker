@@ -3,8 +3,8 @@ services:
   app:
     image: lscr.io/linuxserver/calibre-web:latest
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=1001
+      - PGID=1001
       - TZ=America/Chicago
       - OATHLIB_RELAX_TOKEN_SCOPE=1
     volumes:

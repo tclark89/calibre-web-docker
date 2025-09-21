@@ -11,9 +11,11 @@ services:
     volumes:
       - ./config:/config
       - /mnt/public/eBooks:/books:rw
-        #ports:
-        #- 8083:8083
-        #
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.calibre-web.rule=Host(`calibre-web.tyler-clark.com`)
+      - traefik.http.routers.calibre-web.tls=true
+      - traefik.http.routers.calibre-web.tls.certresolver=cloudflare
 
 networks:
   default:
